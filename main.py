@@ -1,6 +1,9 @@
 from fastmcp import FastMCP
 import os
 import sqlite3
+from dotenv import load_dotenv
+
+load_dotenv()
 
 mcp= FastMCP("Demo server")
 DB_PATH = os.path.join(os.path.dirname(__file__), "expenses.db")
@@ -94,5 +97,5 @@ if __name__ == "__main__":
     mcp.run(
         transport="http",
         host="0.0.0.0",
-        port=8000
+        port=int(os.getenv("PORT", 8000))
     )
